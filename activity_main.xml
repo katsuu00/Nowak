@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SPRAWDŹ ANAGRAM"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:layout_marginBottom="35dp"/>
+
+    <EditText
+        android:id="@+id/slowo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wpisz pierwsze słowo"
+        android:inputType="text"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/slowo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Wpisz drugie słowo"
+        android:inputType="text"
+        android:singleLine="true"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/sprawdz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SPRAWDŹ"
+        android:layout_marginTop="25dp"/>
+
+</LinearLayout>
