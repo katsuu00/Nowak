@@ -1,14 +1,16 @@
+package BMIGraczyk;
+
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GUI extends JFrame {
+public class Gui extends JFrame {
 
     JTextField poleWaga;
     JTextField poleWzrost;
     JLabel wynik;
 
-    public GUI() {
+    public Gui() {
 
         setTitle("Aplikacja BMI");
         setSize(350, 300);
@@ -48,11 +50,11 @@ public class GUI extends JFrame {
             try {
 
                 double waga = Double.parseDouble(
-                    poleWaga.getText().replace(",", ".")
+                        poleWaga.getText().replace(",", ".")
                 );
 
                 double wzrost = Double.parseDouble(
-                    poleWzrost.getText().replace(",", ".")
+                        poleWzrost.getText().replace(",", ".")
                 );
 
                 if (waga <= 0 || wzrost <= 0) {
@@ -66,14 +68,12 @@ public class GUI extends JFrame {
                 double bmi = obliczenia.oblicz(waga, wzrost);
                 String komunikat = obliczenia.wynik(bmi);
 
-                wynik.setText(String.format(
-                    "BMI: %.2f - %s", bmi, komunikat
-                ));
+                wynik.setText("Bmi: "+ bmi + " - " + komunikat );
 
                 if (bmi < 18.5) {
-                    wynik.setForeground(Color.YELLOW.darker());
+                    wynik.setForeground(Color.YELLOW);
                 } else if (bmi < 25) {
-                    wynik.setForeground(Color.GREEN.darker());
+                    wynik.setForeground(Color.GREEN);
                 } else {
                     wynik.setForeground(Color.RED);
                 }
@@ -88,6 +88,6 @@ public class GUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        new GUI();
+        new Gui();
     }
 }
