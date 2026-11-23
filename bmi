@@ -1,0 +1,66 @@
+
+import javax.swing.*;
+import java.awt.*;
+
+public class GUI extends JFrame {
+
+    JTextField poleWaga;
+    JTextField poleWzrost;
+    JLabel wynik;
+
+    public GUI() {
+
+        setTitle("Aplikacja BMI");
+        setSize(350, 250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        setLayout(new GridLayout(4, 2, 10, 10));
+
+        JLabel etykietaWaga = new JLabel("Waga (kg):");
+        poleWaga = new JTextField();
+
+        JLabel etykietaWzrost = new JLabel("Wzrost (cm):");
+        poleWzrost = new JTextField();
+
+        JButton przycisk = new JButton("OBLICZ");
+
+        wynik = new JLabel("Wynik:");
+        
+        add(etykietaWaga);
+        add(poleWaga);
+
+        add(etykietaWzrost);
+        add(poleWzrost);
+
+        add(new JLabel(""));
+        add(przycisk);
+
+        add(new JLabel(""));
+        add(wynik);
+
+        przycisk.addActionListener(e -> {
+
+            try {
+                double waga = Double.parseDouble(poleWaga.getText());
+                double wzrost = Double.parseDouble(poleWzrost.getText());
+
+                BMI obliczenia = new BMI();
+
+                double bmi = obliczenia.oblicz(waga, wzrost);
+                String komunikat = obliczenia.wynik(bmi);
+
+                wynik.setText(komunikat);
+
+            } catch (NumberFormatException ex) {
+                wynik.setText("Wpisz poprawne dane!");
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new GUI();
+    }
+}
