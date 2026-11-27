@@ -62,3 +62,30 @@ przycisk.addActionListener(e -> {
         );
     }
 });
+
+String tekst = "BMI: " + bmi + "\n" + komunikat;
+
+JLabel etykieta = new JLabel(
+    "<html>BMI: " + bmi + "<br>" + komunikat + "</html>"
+);
+
+if (bmi < 18.5) {
+
+    etykieta.setForeground(Color.YELLOW.darker());
+
+} else if (bmi < 25) {
+
+    etykieta.setForeground(Color.GREEN.darker());
+
+} else {
+
+    etykieta.setForeground(Color.RED);
+}
+
+JOptionPane.showMessageDialog(
+    this,
+    etykieta,
+    "Wynik BMI",
+    JOptionPane.PLAIN_MESSAGE
+);
+
