@@ -1,0 +1,90 @@
+package BMIGraczyk;
+//Kamil Graczyk 5pp
+
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Gui extends JFrame {
+
+    JTextField poleWaga;
+    JTextField poleWzrost;
+
+    public Gui() {
+
+        setTitle("Aplikacja BMI");
+        setSize(350, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        setLayout(new GridLayout(3, 1, 10, 10));
+
+        JPanel panelWaga = new JPanel(new GridLayout(2, 1));
+        JLabel etykietaWaga = new JLabel("Waga:");
+        poleWaga = new JTextField();
+
+        panelWaga.add(etykietaWaga);
+        panelWaga.add(poleWaga);
+
+        JPanel panelWzrost = new JPanel(new GridLayout(2, 1));
+        JLabel etykietaWzrost = new JLabel("Wzrost:");
+        poleWzrost = new JTextField();
+
+        panelWzrost.add(etykietaWzrost);
+        panelWzrost.add(poleWzrost);
+
+        JPanel panelDol = new JPanel(new GridLayout(2, 1));
+        JButton przycisk = new JButton("OBLICZ");
+
+
+        panelDol.add(przycisk);
+
+
+        add(panelWaga);
+        add(panelWzrost);
+        add(panelDol);
+
+
+        przycisk.addActionListener(e -> {
+
+            try {
+                double waga = Double.parseDouble(poleWaga.getText());
+
+                double wzrost = Double.parseDouble(poleWzrost.getText());
+
+                if (waga <= 0 || wzrost <= 0) {
+                    JOptionPane.showMessageDialog(this, "Podaj poprawne wartości!", "Błąd", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                BMI obliczenia = new BMI();
+
+                double bmi = obliczenia.oblicz(waga, wzrost);
+                String komunikat = obliczenia.wynik(bmi);
+
+                JLabel etykieta = new JLabel("<html>BMI: " + bmi + "<br>" + komunikat + "</html>");
+
+                if (bmi < 18.5) {
+                    etykieta.setForeground(Color.YELLOW);
+
+                } else if (bmi < 25) {
+                    etykieta.setForeground(Color.GREEN);
+
+                } else {
+
+                    etykieta.setForeground(Color.RED);
+                }
+                JOptionPane.showMessageDialog(this, etykieta, "Wynik BMI", JOptionPane.PLAIN_MESSAGE);
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Wpisz poprawne dane!", "Błąd", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new Gui();
+    }
+}
