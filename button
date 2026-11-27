@@ -1,0 +1,64 @@
+
+przycisk.addActionListener(e -> {
+
+    try {
+
+        double waga = Double.parseDouble(
+            poleWaga.getText().replace(",", ".")
+        );
+
+        double wzrost = Double.parseDouble(
+            poleWzrost.getText().replace(",", ".")
+        );
+
+        if (waga <= 0 || wzrost <= 0) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Podaj poprawne wartości!",
+                "Błąd",
+                JOptionPane.ERROR_MESSAGE
+            );
+
+            return;
+        }
+
+        BMI obliczenia = new BMI();
+
+        double bmi = obliczenia.oblicz(waga, wzrost);
+        String komunikat = obliczenia.wynik(bmi);
+
+        String tekst = "BMI: " + bmi + "\n" + komunikat;
+
+        if (bmi < 18.5) {
+
+            JOptionPane.showMessageDialog(
+                this, tekst, "Wynik BMI",
+                JOptionPane.WARNING_MESSAGE
+            );
+
+        } else if (bmi < 25) {
+
+            JOptionPane.showMessageDialog(
+                this, tekst, "Wynik BMI",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                this, tekst, "Wynik BMI",
+                JOptionPane.ERROR_MESSAGE
+            );
+        }
+
+    } catch (NumberFormatException ex) {
+
+        JOptionPane.showMessageDialog(
+            this,
+            "Wpisz poprawne dane!",
+            "Błąd",
+            JOptionPane.ERROR_MESSAGE
+        );
+    }
+});
